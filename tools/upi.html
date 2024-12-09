@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UPI Payment QR Code Generator</title>
+    <link rel="stylesheet" href="css/qrstyle.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-container">
+        <h2>UPI Payment QR Code Generator</h2>
+        <form id="upi-form">
+          <label for="upiId">UPI ID *</label>
+          <input
+            type="text"
+            id="upiId"
+            placeholder="Enter UPI ID"
+            oninput="generateQRCode()"
+          />
+
+          <label for="payeeName">Payee Name *</label>
+          <input
+            type="text"
+            id="payeeName"
+            placeholder="Enter Payee Name"
+            oninput="generateQRCode()"
+          />
+
+          <label for="transactionAmount">Transaction Amount</label>
+          <input
+            type="number"
+            id="transactionAmount"
+            placeholder="Enter Amount"
+            oninput="generateQRCode()"
+          />
+
+          <label for="paymentNote">Payment Message/Note</label>
+          <input
+            type="text"
+            id="paymentNote"
+            placeholder="Enter Payment Note"
+            oninput="generateQRCode()"
+          />
+        </form>
+      </div>
+
+      <div class="qr-container">
+        <div id="qrcode"></div>
+        <button id="download-btn" onclick="downloadQRCode()">
+          Download QR Code
+        </button>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="js/qrscript.js"></script>
+  </body>
+</html>
