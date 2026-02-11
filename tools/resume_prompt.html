@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Resume Prompt Builder</title>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #09090b, #000000, #18181b);
+      color: #e4e4e7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(24, 24, 27, 0.9);
+      border: 1px solid #27272a;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      color: #a1a1aa;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 520px;
+      margin-top: 20px;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid #3f3f46;
+      border-radius: 12px;
+      padding: 16px;
+      color: #e4e4e7;
+      font-family: monospace;
+      font-size: 13px;
+      outline: none;
+      resize: vertical;
+    }
+
+    .controls {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    button {
+      border: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .copy-btn {
+      background: #fafafa;
+      color: black;
+    }
+
+    .links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .link-btn {
+      background: #18181b;
+      color: #e4e4e7;
+      border: 1px solid #3f3f46;
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+
+    .link-btn:hover {
+      background: #27272a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <div style="text-align:center; margin-bottom: 10px;">
+      <h1>Developer Resume Prompt Builder</h1>
+      <div class="subtitle">
+        Fill the template, copy it, and paste into your favorite AI to generate a clean LaTeX resume.
+      </div>
+    </div>
+
+    <textarea id="prompt"></textarea>
+
+    <div class="controls">
+      <button class="copy-btn" onclick="copyPrompt()">
+        Copy Prompt
+      </button>
+
+      <div class="links">
+        <a class="link-btn" href="https://www.overleaf.com" target="_blank">Overleaf</a>
+        <a class="link-btn" href="https://chat.openai.com" target="_blank">ChatGPT</a>
+        <a class="link-btn" href="https://claude.ai" target="_blank">Claude</a>
+        <a class="link-btn" href="https://gemini.google.com" target="_blank">Gemini</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const templatePrompt = `You are an expert LaTeX resume generator specializing in clean, minimal, ATS-friendly developer resumes.
+
+Your task is to generate COMPLETE, READY-TO-COMPILE LaTeX code in code format suitable for Overleaf.
+
+Return ONLY the LaTeX code.
+Do NOT explain anything.
+Do NOT add commentary before or after the code.
+
+--------------------------------------------------
+
+CRITICAL DESIGN RULES:
+
+• Keep the layout modern, minimal, and highly readable.
+• Prefer a single-column structure.
+• Avoid excessive styling, colors, graphics, tables, or boxes.
+• Ensure strong spacing and visual hierarchy.
+• Resume should ideally fit on ONE page unless the candidate is highly experienced.
+
+--------------------------------------------------
+
+HEADER REQUIREMENTS (VERY IMPORTANT):
+
+Use FontAwesome icons with clickable \href links for ALL contact items.
+
+Ensure the FontAwesome package is included so icons compile correctly.
+
+Follow this EXACT formatting style:
+
+\href{URL}{\raisebox{-0.05\height}\faIcon\ DisplayText}
+
+Example pattern:
+
+\href{https://github.com/username}{\raisebox{-0.05\height}\faGithub\ username}
+\ $|$ \
+\href{mailto:user@email.com}{\raisebox{-0.05\height}\faEnvelope\ user@email.com}
+
+RULES:
+
+• Separate each link using:  \ $|$ \
+• Do NOT show labels like “GitHub:” or “Email:”.
+• Do NOT output raw URLs.
+• Always use icons.
+• Keep everything on ONE centered line beneath the name.
+• Omit any field that is not provided.
+
+--------------------------------------------------
+
+CONTENT STRATEGY:
+
+Focus on SIGNAL, not noise.
+
+Recruiters should immediately see technical strength.
+
+Remove weak or low-value content automatically, such as:
+
+• workshop attendance  
+• basic coursework  
+• outdated school achievements  
+• generic objectives  
+
+Prioritize:
+
+✔ Projects  
+✔ Real-world experience  
+✔ Internships  
+✔ Technical impact  
+✔ Demonstrated ownership  
+
+--------------------------------------------------
+
+SECTION RULES (Use only if data exists):
+
+• Professional Summary → ONLY include if it is genuinely strong.
+• Education
+• Experience
+• Projects  ⭐ HIGH PRIORITY FOR DEVELOPERS
+• Skills / Technologies
+
+Do NOT create empty sections.
+
+--------------------------------------------------
+
+WRITING BULLETS:
+
+Transform weak statements into high-impact bullets.
+
+GOOD:
+“Implemented OAuth authentication improving login security.”
+
+BAD:
+“Responsible for authentication.”
+
+Use strong action verbs such as:
+Developed, Engineered, Built, Optimized, Implemented, Designed.
+
+Each role/project should contain **2–4 bullets MAX**.
+
+No paragraphs.
+
+No fluff.
+
+No buzzwords.
+
+--------------------------------------------------
+
+PROJECT FORMATTING:
+
+For each project include:
+
+• Title  
+• Tech stack  
+• GitHub (if available)  
+• 2–4 impact-driven bullets  
+
+Emphasize:
+
+• What was built  
+• Technologies used  
+• Performance improvements  
+• Real-world application  
+
+If many projects are provided, prioritize the strongest.
+
+--------------------------------------------------
+
+SKILLS SECTION:
+
+Group clearly:
+
+Languages:  
+Frameworks:  
+Tools:  
+Databases:  
+Concepts:  
+
+Avoid dumping everything into one long line.
+
+--------------------------------------------------
+
+SMART IMPROVEMENTS (Allowed):
+
+✔ Rewrite bullets for clarity  
+✔ Fix grammar  
+✔ Improve phrasing  
+✔ Merge redundant content  
+
+--------------------------------------------------
+
+STRICTLY FORBIDDEN:
+
+✘ Do NOT invent experience  
+✘ Do NOT fabricate metrics  
+✘ Do NOT hallucinate projects  
+
+If important data is missing, insert placeholders like:
+
+[Add GitHub]  
+[Insert GPA]  
+[Add Dates]
+
+--------------------------------------------------
+
+FINAL OUTPUT RULE:
+
+Return ONLY the complete LaTeX code.
+No explanations.
+No markdown.
+No commentary.
+
+--------------------------------------------------
+
+USER INPUT:`;
+
+    const textarea = document.getElementById("prompt");
+    textarea.value = templatePrompt;
+
+    async function copyPrompt() {
+      try {
+        await navigator.clipboard.writeText(textarea.value);
+        alert("Prompt copied to clipboard!");
+      } catch {
+        textarea.select();
+        document.execCommand("copy");
+        alert("Prompt copied to clipboard!");
+      }
+    }
+  </script>
+
+</body>
+</html>
