@@ -76,6 +76,26 @@ input:focus {
   border: 1px solid #4caf50;
 }
 
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+input.invalid {
+  border: 1px solid #e57373;
+}
+
+input.invalid:focus {
+  border: 1px solid #e57373;
+}
+
+.error-msg {
+  color: #e57373;
+  font-size: 12px;
+  min-height: 14px;
+  margin-top: 4px;
+}
+
 button {
   background-color: #4caf50;
   color: white;

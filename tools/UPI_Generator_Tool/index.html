@@ -10,40 +10,56 @@
     <div class="container">
       <div class="form-container">
         <h2>UPI Payment QR Code Generator</h2>
-        <form id="upi-form">
-          <label for="upiId">UPI ID *</label>
-          <input
-            type="text"
-            id="upiId"
-            placeholder="Enter UPI ID"
-            oninput="generateQRCode()"
-            value=""
-          />
+        <form id="upi-form" novalidate>
+          <div class="field">
+            <label for="upiId">UPI ID *</label>
+            <input
+              type="text"
+              id="upiId"
+              placeholder="e.g. name@bank"
+              maxlength="256"
+              autocomplete="off"
+              required
+            />
+            <span class="error-msg" id="upiId-error"></span>
+          </div>
 
-          <label for="payeeName">Payee Name *</label>
-          <input
-            type="text"
-            id="payeeName"
-            placeholder="Enter Payee Name"
-            oninput="generateQRCode()"
-            value=""
-          />
+          <div class="field">
+            <label for="payeeName">Payee Name *</label>
+            <input
+              type="text"
+              id="payeeName"
+              placeholder="Enter Payee Name"
+              maxlength="100"
+              required
+            />
+            <span class="error-msg" id="payeeName-error"></span>
+          </div>
 
-          <label for="transactionAmount">Transaction Amount</label>
-          <input
-            type="number"
-            id="transactionAmount"
-            placeholder="Enter Amount"
-            oninput="generateQRCode()"
-          />
+          <div class="field">
+            <label for="transactionAmount">Transaction Amount (₹)</label>
+            <input
+              type="number"
+              id="transactionAmount"
+              placeholder="Enter Amount (optional)"
+              min="0.01"
+              max="100000"
+              step="0.01"
+              inputmode="decimal"
+            />
+            <span class="error-msg" id="transactionAmount-error"></span>
+          </div>
 
-          <label for="paymentNote">Payment Message/Note</label>
-          <input
-            type="text"
-            id="paymentNote"
-            placeholder="Enter Payment Note"
-            oninput="generateQRCode()"
-          />
+          <div class="field">
+            <label for="paymentNote">Payment Message/Note</label>
+            <input
+              type="text"
+              id="paymentNote"
+              placeholder="Enter Payment Note (optional)"
+              maxlength="50"
+            />
+            <span class="error-msg" id="paymentNote-error"></span>
+          </div>
         </form>
       </div>
 
