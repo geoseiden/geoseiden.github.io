@@ -5,10 +5,5 @@ resume.pdf
 sitemap.xml
 node_modules
 
-# Next.js portfolio (appended — nothing above was removed)
-/.next/
-/out/
-*.tsbuildinfo
-next-env.d.ts
-# the old rule `resume.pdf` above matches at any depth; re-include the site copy
-!public/resume.pdf
+# re-include the site's root sitemap (the rule above ignores it)
+!/sitemap.xml
