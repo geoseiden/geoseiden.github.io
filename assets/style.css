@@ -554,6 +554,21 @@ html:not(.dark) .icon-moon {
 }
 
 /* ---------- journey timeline ---------- */
+.timeline-heading {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #000;
+  background: var(--main);
+  border: 2px solid #000;
+  border-radius: var(--radius);
+  box-shadow: 4px 4px 0 0 var(--shadow);
+}
+.timeline + .timeline-heading {
+  margin-top: 3rem;
+}
 .timeline {
   position: relative;
   margin-left: 1.5rem;
