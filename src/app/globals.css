@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar: white track, black square thumb */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb {
+  background: #000000;
+  border-radius: 0;
+  border: 2px solid #ffffff;
+}
+* {
+  scrollbar-color: #000000 #ffffff;
+}
+
+/* Subtle fixed contour-pattern page background */
+body {
+  background-color: #f4f4f5;
+  background-image: repeating-radial-gradient(
+      circle at 15% 25%,
+      transparent 0 44px,
+      rgba(0, 0, 0, 0.05) 44px 46px
+    ),
+    repeating-radial-gradient(
+      circle at 85% 75%,
+      transparent 0 64px,
+      rgba(0, 0, 0, 0.04) 64px 66px
+    );
+  background-attachment: fixed;
+}
+.dark body {
+  background-color: #171717;
+  background-image: repeating-radial-gradient(
+      circle at 15% 25%,
+      transparent 0 44px,
+      rgba(255, 255, 255, 0.05) 44px 46px
+    ),
+    repeating-radial-gradient(
+      circle at 85% 75%,
+      transparent 0 64px,
+      rgba(255, 255, 255, 0.04) 64px 66px
+    );
+}
+
+/* Grid-paper section background: 20px grid fading out radially at the edges */
+.grid-paper {
+  position: relative;
+}
+.grid-paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: linear-gradient(to right, #e4e4e7 1px, transparent 1px),
+    linear-gradient(to bottom, #e4e4e7 1px, transparent 1px);
+  background-size: 20px 20px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 70% at 50% 50%,
+    #000 40%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 70% 70% at 50% 50%,
+    #000 40%,
+    transparent 100%
+  );
+}
+.dark .grid-paper::before {
+  background-image: linear-gradient(to right, #262626 1px, transparent 1px),
+    linear-gradient(to bottom, #262626 1px, transparent 1px);
+}
+.grid-paper > * {
+  position: relative;
+  z-index: 1;
+}
