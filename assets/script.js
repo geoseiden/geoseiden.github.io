@@ -52,6 +52,8 @@
   if (themeBtn) {
     themeBtn.addEventListener("click", function () {
       var dark = document.documentElement.classList.toggle("dark");
+      var m = document.getElementById("meta-theme-color");
+      if (m) m.setAttribute("content", dark ? "#212121" : "#fde047");
       try {
         localStorage.setItem("theme", dark ? "dark" : "light");
       } catch (e) {

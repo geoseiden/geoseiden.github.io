@@ -17,16 +17,24 @@
   --shadow: #000000;
   --page-bg: #f4f4f5;
   --grid-line: #e4e4e7;
+  --line: #000000; /* structural lines (timeline spine) */
+  --sb-track: #ffffff;
+  --sb-thumb: #000000;
   --radius: 5px;
+  color-scheme: light;
 }
 html.dark {
   --bg: #212121;
   --text: #eeefe9;
-  --card-bg: #212121;
+  --card-bg: #2a2a2a; /* lifted above the frame so cards read as surfaces */
   --accent: #4b6fff;
   --shadow: #555555;
   --page-bg: #171717;
-  --grid-line: #262626;
+  --grid-line: #303030;
+  --line: #555555; /* matches shadows; pure black vanishes on #212121 */
+  --sb-track: #171717;
+  --sb-thumb: #555555;
+  color-scheme: dark;
 }
 
 /* ---------- reset / base ---------- */
@@ -84,21 +92,34 @@ h3 {
   line-height: 1.2;
 }
 
-/* custom scrollbar: white track, black square thumb */
+/* custom scrollbar: square thumb, theme-aware track */
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: var(--sb-track);
 }
 ::-webkit-scrollbar-thumb {
-  background: #000000;
+  background: var(--sb-thumb);
   border-radius: 0;
-  border: 2px solid #ffffff;
+  border: 2px solid var(--sb-track);
 }
 * {
-  scrollbar-color: #000000 #ffffff;
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
+}
+
+/* text selection in brand teal */
+::selection {
+  background: var(--main);
+  color: #000;
+}
+
+/* visible keyboard focus, neobrutal-style */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* icon sizing helpers (svgs inherit currentColor) */
@@ -573,7 +594,7 @@ html:not(.dark) .icon-moon {
   position: relative;
   margin-left: 1.5rem;
   padding-left: 2.5rem;
-  border-left: 3px solid #000;
+  border-left: 3px solid var(--line);
 }
 @media (min-width: 768px) {
   .timeline {
