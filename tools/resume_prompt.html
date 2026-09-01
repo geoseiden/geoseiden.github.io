@@ -5,95 +5,255 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Developer Resume Prompt Builder</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    // set theme before first paint to avoid a flash of the wrong mode
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.classList.add("dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <style>
+    /* ---------- tokens (thegeorge.in design system) ---------- */
+    :root {
+      --main: #76fbd9;
+      --bg: #ffffff;
+      --text: #000000;
+      --card-bg: #ffffff;
+      --accent: #2b55ff;
+      --yellow: #fde047;
+      --blue: #60a5fa;
+      --green: #4ade80;
+      --shadow: #000000;
+      --page-bg: #f4f4f5;
+      --grid-line: #e4e4e7;
+      --muted: #52525b;
+      --field-bg: #fafafa;
+      --radius: 5px;
+      color-scheme: light;
+    }
+    html.dark {
+      --bg: #212121;
+      --text: #eeefe9;
+      --card-bg: #2a2a2a;
+      --accent: #4b6fff;
+      --shadow: #555555;
+      --page-bg: #171717;
+      --grid-line: #303030;
+      --muted: #a1a1aa;
+      --field-bg: #1b1b1b;
+      color-scheme: dark;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      margin: 0;
       min-height: 100vh;
-      background: linear-gradient(135deg, #09090b, #000000, #18181b);
-      color: #e4e4e7;
+      font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+      font-weight: 500;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--page-bg);
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 24px;
-      font-family: system-ui, -apple-system, sans-serif;
     }
 
+    ::selection { background: var(--main); color: #000; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* ---------- card ---------- */
     .card {
+      position: relative;
       width: 100%;
       max-width: 900px;
-      background: rgba(24, 24, 27, 0.9);
-      border: 1px solid #27272a;
-      border-radius: 16px;
+      background: var(--card-bg);
+      border: 3px solid #000;
+      border-radius: var(--radius);
+      box-shadow: 12px 12px 0 0 var(--shadow);
       padding: 32px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
     }
 
-    h1 {
-      margin: 0;
-      font-size: 28px;
-      font-weight: 600;
+    /* grid-paper backdrop inside the card, faded at the edges */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      border-radius: var(--radius);
+      background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+      background-size: 20px 20px;
+      -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 40%, transparent 100%);
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 40%, transparent 100%);
+    }
+    .card > * { position: relative; z-index: 1; }
+
+    /* ---------- header ---------- */
+    .head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
-    .subtitle {
-      color: #a1a1aa;
-      font-size: 14px;
+    .title-banner {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      color: #000;
+      background: var(--main);
+      border: 3px solid #000;
+      border-radius: var(--radius);
+      box-shadow: 8px 8px 0 0 var(--shadow);
+    }
+    .title-banner h1 {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .title-banner .subtitle {
       margin-top: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #000;
     }
 
+    .theme-btn {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      font-size: 1.15rem;
+      color: var(--text);
+      background: var(--card-bg);
+      border: 2px solid #000;
+      border-radius: var(--radius);
+      box-shadow: 4px 4px 0 0 var(--shadow);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .theme-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 6px 6px 0 0 var(--shadow);
+    }
+
+    /* ---------- textarea ---------- */
     textarea {
       width: 100%;
-      min-height: 520px;
-      margin-top: 20px;
-      background: rgba(0,0,0,0.6);
-      border: 1px solid #3f3f46;
-      border-radius: 12px;
+      min-height: 480px;
+      background: var(--field-bg);
+      border: 3px solid #000;
+      border-radius: var(--radius);
+      box-shadow: 6px 6px 0 0 var(--shadow);
       padding: 16px;
-      color: #e4e4e7;
-      font-family: monospace;
+      color: var(--text);
+      font-family: ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
       font-size: 13px;
+      line-height: 1.55;
       outline: none;
       resize: vertical;
     }
+    textarea:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
 
+    /* ---------- buttons ---------- */
     .controls {
-      margin-top: 16px;
+      margin-top: 24px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 14px;
     }
 
-    button {
-      border: none;
-      padding: 10px 16px;
-      border-radius: 10px;
-      font-weight: 600;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #000;
+      text-decoration: none;
+      background: var(--main);
+      border: 2px solid #000;
+      border-radius: var(--radius);
+      box-shadow: 4px 4px 0 0 var(--shadow);
       cursor: pointer;
+      transition: all 0.3s;
     }
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 8px 8px 0 0 var(--shadow);
+    }
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 2px 2px 0 0 var(--shadow);
+    }
+
+    .btn-yellow { background: var(--yellow); }
+    .btn-blue   { background: var(--blue); }
+    .btn-green  { background: var(--green); }
 
     .copy-btn {
-      background: #fafafa;
-      color: black;
+      font-size: 1.1rem;
+      padding: 0.75rem 1.5rem;
     }
+    .copy-btn.copied { background: var(--green); }
 
     .links {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
-    .link-btn {
-      background: #18181b;
-      color: #e4e4e7;
-      border: 1px solid #3f3f46;
-      text-decoration: none;
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-weight: 500;
+    .footnote {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .footnote .badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #000;
+      background: var(--yellow);
+      border: 2px solid #000;
+      border-radius: var(--radius);
+      margin-right: 6px;
+      vertical-align: middle;
     }
 
-    .link-btn:hover {
-      background: #27272a;
+    @media (max-width: 560px) {
+      .card { padding: 20px; box-shadow: 8px 8px 0 0 var(--shadow); }
+      .controls { justify-content: center; }
+      .copy-btn { width: 100%; }
+      .links { justify-content: center; }
     }
   </style>
 </head>
@@ -101,26 +261,34 @@
 
   <div class="card">
 
-    <div style="text-align:center; margin-bottom: 10px;">
-      <h1>Developer Resume Prompt Builder</h1>
-      <div class="subtitle">
-        Fill the template, copy it, and paste into your favorite AI to generate a clean LaTeX resume.
+    <div class="head">
+      <div class="title-banner">
+        <h1>Developer Resume Prompt Builder</h1>
+        <div class="subtitle">
+          Fill the template, copy it, and paste into your favorite AI to generate a clean LaTeX resume.
+        </div>
       </div>
+      <button class="theme-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
     </div>
 
-    <textarea id="prompt"></textarea>
+    <textarea id="prompt" spellcheck="false"></textarea>
 
     <div class="controls">
-      <button class="copy-btn" onclick="copyPrompt()">
+      <button class="btn copy-btn" id="copy-btn" onclick="copyPrompt()">
         Copy Prompt
       </button>
 
       <div class="links">
-        <a class="link-btn" href="https://www.overleaf.com" target="_blank">Overleaf</a>
-        <a class="link-btn" href="https://chat.openai.com" target="_blank">ChatGPT</a>
-        <a class="link-btn" href="https://claude.ai" target="_blank">Claude</a>
-        <a class="link-btn" href="https://gemini.google.com" target="_blank">Gemini</a>
+        <a class="btn btn-green"  href="https://www.overleaf.com" target="_blank" rel="noopener">Overleaf</a>
+        <a class="btn btn-yellow" href="https://chat.openai.com" target="_blank" rel="noopener">ChatGPT</a>
+        <a class="btn btn-blue"   href="https://claude.ai" target="_blank" rel="noopener">Claude</a>
+        <a class="btn"            href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a>
       </div>
+    </div>
+
+    <div class="footnote">
+      <span class="badge">TIP</span>
+      Paste your details after <strong>USER INPUT:</strong> at the bottom of the prompt before copying.
     </div>
 
   </div>
@@ -148,23 +316,23 @@ CRITICAL DESIGN RULES:
 
 HEADER REQUIREMENTS (VERY IMPORTANT):
 
-Use FontAwesome icons with clickable \href links for ALL contact items.
+Use FontAwesome icons with clickable \\href links for ALL contact items.
 
 Ensure the FontAwesome package is included so icons compile correctly.
 
 Follow this EXACT formatting style:
 
-\href{URL}{\raisebox{-0.05\height}\faIcon\ DisplayText}
+\\href{URL}{\\raisebox{-0.05\\height}\\faIcon\\ DisplayText}
 
 Example pattern:
 
-\href{https://github.com/username}{\raisebox{-0.05\height}\faGithub\ username}
-\ $|$ \
-\href{mailto:user@email.com}{\raisebox{-0.05\height}\faEnvelope\ user@email.com}
+\\href{https://github.com/username}{\\raisebox{-0.05\\height}\\faGithub\\ username}
+\\ $|$ \\
+\\href{mailto:user@email.com}{\\raisebox{-0.05\\height}\\faEnvelope\\ user@email.com}
 
 RULES:
 
-• Separate each link using:  \ $|$ \
+• Separate each link using:  \\ $|$ \\
 • Do NOT show labels like “GitHub:” or “Email:”.
 • Do NOT output raw URLs.
 • Always use icons.
@@ -181,18 +349,18 @@ Recruiters should immediately see technical strength.
 
 Remove weak or low-value content automatically, such as:
 
-• workshop attendance  
-• basic coursework  
-• outdated school achievements  
-• generic objectives  
+• workshop attendance
+• basic coursework
+• outdated school achievements
+• generic objectives
 
 Prioritize:
 
-✔ Projects  
-✔ Real-world experience  
-✔ Internships  
-✔ Technical impact  
-✔ Demonstrated ownership  
+✔ Projects
+✔ Real-world experience
+✔ Internships
+✔ Technical impact
+✔ Demonstrated ownership
 
 --------------------------------------------------
 
@@ -235,17 +403,17 @@ PROJECT FORMATTING:
 
 For each project include:
 
-• Title  
-• Tech stack  
-• GitHub (if available)  
-• 2–4 impact-driven bullets  
+• Title
+• Tech stack
+• GitHub (if available)
+• 2–4 impact-driven bullets
 
 Emphasize:
 
-• What was built  
-• Technologies used  
-• Performance improvements  
-• Real-world application  
+• What was built
+• Technologies used
+• Performance improvements
+• Real-world application
 
 If many projects are provided, prioritize the strongest.
 
@@ -255,11 +423,11 @@ SKILLS SECTION:
 
 Group clearly:
 
-Languages:  
-Frameworks:  
-Tools:  
-Databases:  
-Concepts:  
+Languages:
+Frameworks:
+Tools:
+Databases:
+Concepts:
 
 Avoid dumping everything into one long line.
 
@@ -267,23 +435,23 @@ Avoid dumping everything into one long line.
 
 SMART IMPROVEMENTS (Allowed):
 
-✔ Rewrite bullets for clarity  
-✔ Fix grammar  
-✔ Improve phrasing  
-✔ Merge redundant content  
+✔ Rewrite bullets for clarity
+✔ Fix grammar
+✔ Improve phrasing
+✔ Merge redundant content
 
 --------------------------------------------------
 
 STRICTLY FORBIDDEN:
 
-✘ Do NOT invent experience  
-✘ Do NOT fabricate metrics  
-✘ Do NOT hallucinate projects  
+✘ Do NOT invent experience
+✘ Do NOT fabricate metrics
+✘ Do NOT hallucinate projects
 
 If important data is missing, insert placeholders like:
 
-[Add GitHub]  
-[Insert GPA]  
+[Add GitHub]
+[Insert GPA]
 [Add Dates]
 
 --------------------------------------------------
@@ -302,15 +470,32 @@ USER INPUT:`;
     const textarea = document.getElementById("prompt");
     textarea.value = templatePrompt;
 
+    // theme toggle, persisted like thegeorge.in
+    const themeBtn = document.getElementById("theme-toggle");
+    function paintThemeBtn() {
+      themeBtn.textContent = document.documentElement.classList.contains("dark") ? "☀️" : "🌙";
+    }
+    function toggleTheme() {
+      const dark = document.documentElement.classList.toggle("dark");
+      try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch (e) {}
+      paintThemeBtn();
+    }
+    paintThemeBtn();
+
     async function copyPrompt() {
+      const btn = document.getElementById("copy-btn");
       try {
         await navigator.clipboard.writeText(textarea.value);
-        alert("Prompt copied to clipboard!");
       } catch {
         textarea.select();
         document.execCommand("copy");
-        alert("Prompt copied to clipboard!");
       }
+      btn.textContent = "Copied! ✔";
+      btn.classList.add("copied");
+      setTimeout(() => {
+        btn.textContent = "Copy Prompt";
+        btn.classList.remove("copied");
+      }, 1600);
     }
   </script>
 
