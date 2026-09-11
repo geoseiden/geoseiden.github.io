@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bus Track — Inauguration</title>
+  <meta name="description" content="SCET Smart Transport System — Bus Track official launch sequence">
+
+  <!-- Typography: Inter (UI + titles). Loaded before the show starts via the launch gate. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- =====================================================================
+     LAUNCH GATE
+     A dark pre-launch screen. The chief guest presses the button to begin.
+     It also unlocks audio (browsers require a click) and lets fonts load
+     so the opening frames are perfect. Disable via CONFIG.requireStart.
+     ===================================================================== -->
+<div id="gate" class="gate">
+  <div class="gate-inner">
+    <!-- LOGO SLOT #1: replace the <svg> below with <img src="assets/logo.svg" alt="SCET"> -->
+    <div class="gate-logo" aria-hidden="true">
+      <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="24" cy="24" r="4" fill="currentColor"/><path d="M24 3v8M24 37v8M3 24h8M37 24h8" stroke="currentColor" stroke-width="1.2"/></svg>
+    </div>
+    <div class="gate-eyebrow">SCET SMART TRANSPORT SYSTEM</div>
+    <div class="gate-title">Bus Track</div>
+    <button id="gate-btn" class="gate-btn" type="button">
+      <span class="gate-btn-ring"></span>
+      <span class="gate-btn-label">BEGIN INAUGURATION</span>
+    </button>
+    <div class="gate-hint">Press Enter · Esc to skip</div>
+  </div>
+</div>
+
+<main id="stage" class="stage" aria-label="Bus Track inauguration">
+
+  <!-- Cinematic atmosphere: haze, vignette, grain — present in every scene -->
+  <div class="atmos"></div>
+  <canvas id="dust" class="dust" aria-hidden="true"></canvas>
+  <div class="flash" id="flash"></div>
+  <div class="whiteout" id="whiteout"></div>
+  <!-- headlamp flash: two glows that bloom out of the bus lights into the dashboard -->
+  <div class="lampflash" id="lampflash"><i class="lampflash-l"></i><i class="lampflash-r"></i></div>
+  <div class="vignette"></div>
+  <div class="grain"></div>
+
+  <!-- Persistent brand mark (top-left). LOGO SLOT #2: swap the svg for your logo image. -->
+  <header class="brand" id="brand">
+    <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="24" cy="24" r="4" fill="currentColor"/><path d="M24 3v8M24 37v8M3 24h8M37 24h8" stroke="currentColor" stroke-width="1.5"/></svg>
+    <div class="brand-text"><b>BUS TRACK</b><span>SCET SMART TRANSPORT SYSTEM</span></div>
+  </header>
+
+  <!-- ===================================================================
+       SCENE A · THE ROAD  (darkness → bus reveal → headlights → road → GPS)
+       Also reused at the end for the hero return + title card.
+       =================================================================== -->
+  <section id="scene-road" class="scene scene-road">
+
+    <!-- VIDEO MODE (CONFIG.busVideo): a short cinematic clip plays the darkness → ignition → lit bus
+         beat with its own sound, then freezes on a still for the initialization / GPS beats.
+         Replace assets/intro.mp4 + assets/bus-lit.jpg + assets/bus-dark.jpg to use another clip. -->
+    <div class="cine" id="cine" hidden>
+      <video id="cine-video" playsinline preload="auto"></video>
+      <img id="cine-still" alt="">
+      <div class="cine-vignette"></div>
+    </div>
+
+    <!-- Horizon glow behind the bus -->
+    <div class="horizon"></div>
+
+    <!-- Perspective road plane. Lane markings scroll when the bus drives. -->
+    <div class="road-wrap">
+      <div class="road" id="road">
+        <div class="road-surface"></div>
+        <div class="road-lanes" id="road-lanes"></div>
+        <div class="road-edge road-edge-l"></div>
+        <div class="road-edge road-edge-r"></div>
+        <div class="road-light"></div>
+      </div>
+    </div>
+
+    <!-- Wet-road reflections of the headlamps -->
+    <div class="reflect reflect-l"></div>
+    <div class="reflect reflect-r"></div>
+
+    <!-- HERO BUS ------------------------------------------------------
+         BUS ART SLOT
+         Preferred: a real photo/render cut out on a transparent background,
+         saved as assets/bus.png and referenced in CONFIG.busImage (script.js).
+         It replaces the SVG automatically; open index.html?calibrate and
+         click the two headlamps to get the lamp coordinates for CONFIG.
+         Fallback: the stylised front-3/4 SVG below (Sahrdaya yellow).
+         ---------------------------------------------------------------- -->
+    <div class="bus" id="bus">
+      <div class="bus-art">
+        <img class="bus-img" id="bus-img" alt="" hidden>
+        <svg id="bus-svg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="gBody" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0"   stop-color="#ffd84a"/>
+              <stop offset=".45" stop-color="#f6c526"/>
+              <stop offset=".8"  stop-color="#d9a410"/>
+              <stop offset="1"   stop-color="#b8860b"/>
+            </linearGradient>
+            <linearGradient id="gBodyH" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0"   stop-color="#000" stop-opacity=".3"/>
+              <stop offset=".18" stop-color="#000" stop-opacity="0"/>
+              <stop offset=".82" stop-color="#000" stop-opacity="0"/>
+              <stop offset="1"   stop-color="#000" stop-opacity=".28"/>
+            </linearGradient>
+            <linearGradient id="gSide" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0"  stop-color="#c9971a"/>
+              <stop offset=".5" stop-color="#9c7410"/>
+              <stop offset="1"  stop-color="#5e4608"/>
+            </linearGradient>
+            <linearGradient id="gSideGlass" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0" stop-color="#16232b"/><stop offset="1" stop-color="#080d11"/>
+            </linearGradient>
+            <linearGradient id="gRoof" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#2a3138"/>
+              <stop offset="1" stop-color="#0f1418"/>
+            </linearGradient>
+            <linearGradient id="gGlass" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0"   stop-color="#0d151b"/>
+              <stop offset=".5"  stop-color="#152431"/>
+              <stop offset="1"   stop-color="#0a1218"/>
+            </linearGradient>
+            <linearGradient id="gGlassRef" x1="0" y1="0" x2="1" y2="1">
+              <stop offset=".25" stop-color="#fff" stop-opacity="0"/>
+              <stop offset=".45" stop-color="#cfe9f5" stop-opacity=".16"/>
+              <stop offset=".55" stop-color="#cfe9f5" stop-opacity=".16"/>
+              <stop offset=".75" stop-color="#fff" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="gStripe" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0"  stop-color="#0f3d5c"/>
+              <stop offset=".5" stop-color="#1c6a95"/>
+              <stop offset="1"  stop-color="#0f3d5c"/>
+            </linearGradient>
+            <linearGradient id="gBumper" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#3a4249"/>
+              <stop offset="1" stop-color="#171c20"/>
+            </linearGradient>
+            <linearGradient id="gChrome" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#eef2f4"/>
+              <stop offset=".5" stop-color="#8f9aa2"/>
+              <stop offset="1" stop-color="#d6dde2"/>
+            </linearGradient>
+            <radialGradient id="gLampOff" cx=".5" cy=".5" r=".6">
+              <stop offset="0"  stop-color="#2a333b"/>
+              <stop offset=".6" stop-color="#141a1f"/>
+              <stop offset="1"  stop-color="#0a0e11"/>
+            </radialGradient>
+            <radialGradient id="gLampOn" cx=".5" cy=".5" r=".5">
+              <stop offset="0"  stop-color="#ffffff"/>
+              <stop offset=".35" stop-color="#eafaff"/>
+              <stop offset=".7" stop-color="#8fe1ff" stop-opacity=".7"/>
+              <stop offset="1"  stop-color="#5fd8ff" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="gTire" cx=".5" cy=".5" r=".5">
+              <stop offset="0" stop-color="#2b3238"/>
+              <stop offset=".55" stop-color="#15191c"/>
+              <stop offset="1" stop-color="#090b0d"/>
+            </radialGradient>
+            <clipPath id="cGlass"><path d="M176 156H624V332Q624 344 612 344H188Q176 344 176 332Z"/></clipPath>
+            <filter id="fSoft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
+            <filter id="fShadow" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur stdDeviation="14"/></filter>
+          </defs>
+
+          <!-- ground contact shadow (covers side + front) -->
+          <ellipse class="bus-shadow" cx="400" cy="548" rx="340" ry="24" fill="#000" opacity=".8" filter="url(#fShadow)"/>
+
+          <!-- receding left side (front-3/4 view) -->
+          <g class="bus-fill">
+            <path d="M246 78L72 150V468L246 522Z" fill="url(#gSide)"/>
+            <path d="M246 78L72 150V170L246 146Z" fill="url(#gRoof)"/>
+            <path d="M246 160L72 214V330L246 344Z" fill="url(#gSideGlass)" stroke="#0b1116" stroke-width="4"/>
+            <g stroke="#0b1116" stroke-width="4"><path d="M206 172V341M166 185V338M128 197V335M100 205V333"/></g>
+            <path d="M246 160L72 214V236L246 186Z" fill="#fff" opacity=".05"/>
+            <path d="M246 370L72 396V410L246 384Z" fill="url(#gStripe)"/>
+            <ellipse cx="112" cy="466" rx="20" ry="42" fill="url(#gTire)"/>
+            <ellipse cx="112" cy="466" rx="8" ry="18" fill="#0a0d0f"/>
+            <path d="M72 150V468" stroke="#fff" stroke-opacity=".08" stroke-width="2"/>
+          </g>
+
+          <!-- front face, foreshortened slightly for the 3/4 angle -->
+          <g transform="translate(110 0) scale(.86 1)">
+            <g class="bus-fill">
+              <rect x="178" y="446" width="92" height="104" rx="22" fill="url(#gTire)"/>
+              <rect x="530" y="446" width="92" height="104" rx="22" fill="url(#gTire)"/>
+              <rect x="196" y="470" width="56" height="60" rx="12" fill="#0a0d0f"/>
+              <rect x="548" y="470" width="56" height="60" rx="12" fill="#0a0d0f"/>
+            </g>
+            <g class="bus-fill">
+              <path d="M150 128Q150 74 204 74H596Q650 74 650 128V498Q650 522 626 522H174Q150 522 150 498Z" fill="url(#gBody)"/>
+              <path d="M150 128Q150 74 204 74H596Q650 74 650 128V498Q650 522 626 522H174Q150 522 150 498Z" fill="url(#gBodyH)"/>
+              <path d="M150 128Q150 74 204 74H596Q650 74 650 128V146H150Z" fill="url(#gRoof)"/>
+              <path d="M172 88H628" stroke="#fff" stroke-opacity=".18" stroke-width="1.5"/>
+              <!-- destination display: EDIT the text -->
+              <rect x="204" y="100" width="392" height="38" rx="5" fill="#05080a" stroke="#2b333a" stroke-width="1.5"/>
+              <text class="bus-sign" x="400" y="126" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="700" letter-spacing="8" fill="#ffd257" opacity=".12">SAHRDAYA</text>
+              <path d="M176 156H624V332Q624 344 612 344H188Q176 344 176 332Z" fill="url(#gGlass)" stroke="#0c1115" stroke-width="7"/>
+              <g clip-path="url(#cGlass)">
+                <path d="M176 156H624V332Q624 344 612 344H188Q176 344 176 332Z" fill="url(#gGlassRef)"/>
+                <path d="M176 300Q400 260 624 300V344H176Z" fill="#000" opacity=".28"/>
+              </g>
+              <path d="M300 336Q340 300 372 262" stroke="#0a0e11" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+              <path d="M520 336Q560 300 592 262" stroke="#0a0e11" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+              <rect x="150" y="350" width="500" height="4" fill="url(#gChrome)" opacity=".7"/>
+              <rect x="150" y="370" width="500" height="14" fill="url(#gStripe)"/>
+              <text x="400" y="362" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="4" fill="#1a2128" opacity=".85">COLLEGE BUS SERVICE</text>
+              <rect x="163" y="404" width="112" height="54" rx="14" fill="#0b0e11"/>
+              <rect x="525" y="404" width="112" height="54" rx="14" fill="#0b0e11"/>
+              <ellipse class="lamp-lens" cx="219" cy="431" rx="44" ry="19" fill="url(#gLampOff)"/>
+              <ellipse class="lamp-lens" cx="581" cy="431" rx="44" ry="19" fill="url(#gLampOff)"/>
+              <rect class="lamp-drl" x="170" y="464" width="98" height="3" rx="1.5" fill="#dff6ff" opacity=".12"/>
+              <rect class="lamp-drl" x="532" y="464" width="98" height="3" rx="1.5" fill="#dff6ff" opacity=".12"/>
+              <rect x="300" y="408" width="200" height="56" rx="8" fill="#0d1114"/>
+              <g stroke="#2a3238" stroke-width="2"><path d="M312 420h176M312 432h176M312 444h176M312 456h176"/></g>
+              <circle cx="400" cy="436" r="11" fill="#0d1114" stroke="url(#gChrome)" stroke-width="2"/>
+              <circle cx="400" cy="436" r="3" fill="#5fd8ff"/>
+              <path d="M150 474H650V498Q650 522 626 522H174Q150 522 150 498Z" fill="url(#gBumper)"/>
+              <rect x="348" y="486" width="104" height="24" rx="3" fill="#e4e9ec"/>
+              <text x="400" y="503" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="2" fill="#1a2128">SCET 01</text>
+              <path d="M650 212H682" stroke="#1b2126" stroke-width="5"/>
+              <rect x="678" y="184" width="34" height="58" rx="9" fill="#1f262b" stroke="#3c454c" stroke-width="1.5"/>
+            </g>
+            <path class="bus-rim" d="M150 128Q150 74 204 74H596Q650 74 650 128V498Q650 522 626 522H174Q150 522 150 498Z" fill="none" stroke="#ffe08a" stroke-width="2" opacity="0"/>
+            <path class="bus-rim" d="M176 156H624V332Q624 344 612 344H188Q176 344 176 332Z" fill="none" stroke="#9fc2d1" stroke-width="1.5" opacity="0"/>
+            <g class="lamp-on" opacity="0">
+              <ellipse cx="219" cy="431" rx="70" ry="42" fill="url(#gLampOn)" filter="url(#fSoft)"/>
+              <ellipse cx="581" cy="431" rx="70" ry="42" fill="url(#gLampOn)" filter="url(#fSoft)"/>
+              <ellipse cx="219" cy="431" rx="40" ry="16" fill="#fff"/>
+              <ellipse cx="581" cy="431" rx="40" ry="16" fill="#fff"/>
+            </g>
+          </g>
+          <!-- side rim light + left mirror (drawn over the side) -->
+          <path class="bus-rim" d="M246 78L72 150V468L246 522" fill="none" stroke="#ffe08a" stroke-width="1.5" opacity="0"/>
+          <g class="bus-fill"><path d="M236 214H206" stroke="#1b2126" stroke-width="5"/><rect x="180" y="186" width="30" height="56" rx="9" fill="#1f262b" stroke="#3c454c" stroke-width="1.5"/></g>
+        </svg>
+      </div>
+
+      <!-- Volumetric light, positioned on the headlamps (percent of bus box) -->
+      <div class="lamp lamp-l"><div class="beam"></div><div class="bloom"></div><div class="streak"></div></div>
+      <div class="lamp lamp-r"><div class="beam"></div><div class="bloom"></div><div class="streak"></div></div>
+
+      <!-- GPS activation above the roof -->
+      <div class="gps" id="gps">
+        <div class="gps-rings"><i></i><i></i><i></i></div>
+        <div class="gps-sat" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="15" y="15" width="10" height="10" rx="2"/><path d="M4 20h9M27 20h9"/><path d="M4 15v10M36 15v10"/><path d="M20 25v9"/></g><circle cx="20" cy="20" r="2" fill="currentColor"/></svg>
+        </div>
+        <div class="gps-link"></div>
+      </div>
+    </div>
+
+    <!-- System initialization copy (Scene 3) -->
+    <div class="init" id="init">
+      <div class="eyebrow" id="init-eyebrow">SCET SMART TRANSPORT SYSTEM</div>
+      <div class="init-title" id="init-title">INITIALIZING LIVE TRACKING<span class="dots"><i>.</i><i>.</i><i>.</i></span></div>
+      <div class="init-bar"><span id="init-bar"></span></div>
+    </div>
+
+    <!-- GPS status pill (Scene 4) -->
+    <div class="pill gps-pill" id="gps-pill">
+      <span class="pill-dot"></span>
+      <span class="pill-text">GPS CONNECTED <b>✓</b></span>
+      <span class="pill-meta">SAT 11 · ±3 m</span>
+    </div>
+
+    <!-- Final title card (Scene 8) -->
+    <div class="title" id="title">
+      <div class="title-rule" id="title-rule"></div>
+      <div class="title-kicker" id="title-kicker">SCET SMART TRANSPORT SYSTEM</div>
+      <h1 class="title-main" id="title-main">BUS TRACK</h1>
+      <div class="title-sub" id="title-sub"><span>Smart</span><i>•</i><span>Live</span><i>•</i><span>Connected</span></div>
+      <div class="title-badge" id="title-badge">INAUGURATED</div>
+      <div class="title-meta" id="title-meta">
+        <!-- EDIT: launch details -->
+        <span>Official Launch</span><i>·</i><span id="title-date">11 September 2026</span><i>·</i><span>Department of Computer Science</span>
+      </div>
+      <button id="enter-btn" class="enter" type="button"><span>ENTER SYSTEM</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="title-redirect" id="title-redirect"></div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       SCENE B · LIVE TRACKING DASHBOARD  (route map + stop panel)
+       =================================================================== -->
+  <section id="scene-map" class="scene scene-map">
+    <div class="map-grid" id="map-grid"></div>
+
+    <div class="dash" id="dash">
+      <!-- top bar -->
+      <div class="dash-top">
+        <div class="dash-live"><span class="live-dot"></span>LIVE TRACKING ACTIVE</div>
+        <div class="dash-center" id="dash-status">Route 01 · Morning Service</div>
+        <div class="dash-right"><span id="dash-clock">07:40:00</span><i>·</i><span>BUS SCET-01</span></div>
+      </div>
+
+      <!-- map panel -->
+      <div class="map" id="map">
+        <div class="map-terrain"></div>
+        <svg class="route-svg" id="route-svg" viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <filter id="fGlow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <filter id="fGlowWide" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+            <linearGradient id="gRoute" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3fb7ea"/><stop offset="1" stop-color="#8fe9ff"/></linearGradient>
+          </defs>
+
+          <!-- background streets (decor) -->
+          <g class="streets" fill="none" stroke="#6f8792" stroke-opacity=".10" stroke-width="2">
+            <path d="M0 560C160 520 240 560 360 500S560 420 700 470 900 420 1000 460"/>
+            <path d="M0 250C120 300 260 260 340 300S520 340 600 250 800 220 1000 280"/>
+            <path d="M140 0C180 120 90 240 160 380S220 520 260 620"/>
+            <path d="M560 0C520 80 600 160 580 260S640 460 700 620"/>
+            <path d="M820 0C800 90 880 140 860 240S760 380 840 470 920 560 900 620"/>
+            <path d="M0 120H1000" stroke-opacity=".05"/><path d="M0 400H1000" stroke-opacity=".05"/>
+          </g>
+
+          <!-- ROUTE: edit the path here. Stops are placed automatically along it (CONFIG.stops[].at) -->
+          <path id="route-halo" class="route-halo" d="M110 500C190 480 230 420 300 385S420 400 470 335 520 205 640 215 740 300 800 240 850 150 890 125"/>
+          <path id="route-base" class="route-base" d="M110 500C190 480 230 420 300 385S420 400 470 335 520 205 640 215 740 300 800 240 850 150 890 125"/>
+          <path id="route-path" class="route-progress" d="M110 500C190 480 230 420 300 385S420 400 470 335 520 205 640 215 740 300 800 240 850 150 890 125"/>
+
+          <g id="geofences"></g>
+          <g id="stops"></g>
+
+          <!-- bus marker (drawn facing +x so autoRotate works) -->
+          <g id="marker" class="marker" opacity="0">
+            <ellipse cx="0" cy="0" rx="26" ry="18" fill="#5fd8ff" opacity=".35" filter="url(#fGlowWide)"/>
+            <rect x="-15" y="-8" width="30" height="16" rx="4" fill="#0b1216" stroke="#bfefff" stroke-width="1.2"/>
+            <rect x="-13" y="-6" width="26" height="12" rx="3" fill="#e8f6fb"/>
+            <rect x="8" y="-5" width="4" height="10" rx="1" fill="#1a3a4a"/>
+            <rect x="-11" y="-5" width="3" height="10" rx="1" fill="#9fb8c2"/>
+          </g>
+        </svg>
+
+        <!-- map chrome -->
+        <div class="map-coords" id="map-coords">10.5910° N · 76.2740° E</div>
+        <div class="map-scale"><span></span>500 m</div>
+        <div class="map-compass"><svg viewBox="0 0 24 24"><path d="M12 3l4 9-4-2-4 2z" fill="currentColor"/><path d="M12 21l-4-9 4 2 4-2z" fill="currentColor" opacity=".35"/></svg></div>
+        <div class="toast" id="toast"><span class="toast-dot"></span><span id="toast-text">Departing Mala</span></div>
+
+        <!-- destination reached overlay (Scene 7) -->
+        <div class="arrive" id="arrive">
+          <svg class="arrive-check" viewBox="0 0 80 80"><circle id="arrive-ring" cx="40" cy="40" r="36" fill="none" stroke="#8fe9ff" stroke-width="1.5"/><path id="arrive-tick" d="M25 41l10 10 20-22" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="arrive-title">DESTINATION REACHED</div>
+          <div class="arrive-sub">Trip Completed Successfully <b>✓</b></div>
+        </div>
+      </div>
+
+      <!-- stop progression panel -->
+      <aside class="panel" id="panel">
+        <div class="panel-head">
+          <div class="eyebrow">TRIP MONITOR</div>
+          <h2>Live Route</h2>
+          <div class="panel-tags"><span>ROUTE 01</span><span class="ok" id="panel-link">CONNECTED</span></div>
+        </div>
+        <div class="stats">
+          <div class="stat"><small>SPEED</small><b><span id="stat-speed">0</span> <em>km/h</em></b></div>
+          <div class="stat"><small>NEXT STOP</small><b id="stat-next">Mala Pond</b></div>
+          <div class="stat"><small>ETA</small><b><span id="stat-eta">—</span> <em>min</em></b></div>
+        </div>
+        <ol class="stops" id="stop-list"></ol>
+        <div class="panel-foot">
+          <div class="foot-row"><span>TRIP PROGRESS</span><b id="foot-pct">0%</b></div>
+          <div class="foot-bar"><span id="foot-bar"></span></div>
+          <div class="foot-status" id="foot-status">Departing Mala</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- global controls -->
+  <button id="skip" class="skip" type="button">SKIP <span>›</span></button>
+  <div class="watermark" id="watermark">SCET · SAHRDAYA COLLEGE OF ENGINEERING &amp; TECHNOLOGY</div>
+</main>
+
+<!-- GSAP core + MotionPathPlugin (bus marker follows the SVG route) -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
