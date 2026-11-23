@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Admin home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+body{margin:0}
+button{font-family:inherit;cursor:pointer}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F4F5F7; color: #1B1E24; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+
+<div style="padding: 16px; background: #FFFFFF; display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 19px; font-weight: 800">Admin</div>
+<div style="font-size: 12px; color: #5E6470">[SHOP NAME] · signed in as Owner</div>
+</div>
+<span style="padding: 5px 10px; border-radius: 8px; background: #1B1E24; color: #FFFFFF; font-size: 11px; font-weight: 800">ADMIN</span>
+</div>
+
+<div style="flex-grow: 1; padding: 12px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+
+<div style="font-size: 12px; font-weight: 800; color: #5E6470; padding: 2px 4px 0">MENU</div>
+<div style="background: #FFFFFF; border-radius: 16px; padding: 0 14px">
+<a href="Items.dc.html" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #EEF0F3; text-decoration: none; color: #1B1E24">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Menu items</span><span style="font-size: 12px; color: #5E6470">Add, edit, hide or delete items and prices</span></span>
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
+</a>
+<a href="Items.dc.html" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 0; text-decoration: none; color: #1B1E24">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Categories</span><span style="font-size: 12px; color: #5E6470">Rename, reorder, add or remove sections</span></span>
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
+</a>
+</div>
+
+<div style="font-size: 12px; font-weight: 800; color: #5E6470; padding: 2px 4px 0">PEOPLE AND BILLS</div>
+<div style="background: #FFFFFF; border-radius: 16px; padding: 0 14px">
+<a href="Staff.dc.html" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #EEF0F3; text-decoration: none; color: #1B1E24">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Staff</span><span style="font-size: 12px; color: #5E6470">Billing users, their PINs and what they may do</span></span>
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
+</a>
+<a href="Today.dc.html" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 0; text-decoration: none; color: #1B1E24">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Export bills</span><span style="font-size: 12px; color: #5E6470">Download bills for any dates as Excel or PDF</span></span>
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
+</a>
+</div>
+
+<div style="font-size: 12px; font-weight: 800; color: #5E6470; padding: 2px 4px 0">SHOP SET-UP</div>
+<div style="background: #FFFFFF; border-radius: 16px; padding: 0 14px">
+<a href="Printer.dc.html" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #EEF0F3; text-decoration: none; color: #1B1E24">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Printer and bill design</span><span style="font-size: 12px; color: #5E6470">Paper size, alignment, what the bill shows</span></span>
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
+</a>
+<a href="Storage.dc.html" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #EEF0F3; text-decoration: none; color: #1B1E24">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Storage and backup</span><span style="font-size: 12px; color: #5E6470">Where bills are kept, backup, restore</span></span>
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
+</a>
+<a href="Admin.dc.html" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 0; text-decoration: none; color: #1B1E24">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Shop details</span><span style="font-size: 12px; color: #5E6470">Name, address, phone, colour, the message sent with a bill</span></span>
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
+</a>
+</div>
+
+</div>
+
+<div style="height: 58px; background: #FFFFFF; border-top: 1px solid #E7E9EE; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: center; text-align: center; font-size: 12px; font-weight: 600">
+<a href="Main.dc.html" style="color: #5E6470; text-decoration: none; padding: 14px 0">Billing</a>
+<a href="Bills.dc.html" style="color: #5E6470; text-decoration: none; padding: 14px 0">Bills</a>
+<a href="Today.dc.html" style="color: #5E6470; text-decoration: none; padding: 14px 0">Today</a>
+<a href="Admin.dc.html" style="color: {{accent}}; text-decoration: none; font-weight: 800; padding: 14px 0">Admin</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#1F7A4D","options":["#1F7A4D","#1D5FBF","#B4470F","#6A3FB5"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#1F7A4D' };
+}
+}
+</script>
+</body>
+</html>
