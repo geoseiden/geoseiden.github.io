@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Storage and backup</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 844px; box-sizing: border-box; background: #F4F5F7; color: #1B1E24; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 60px; padding: 0 12px 0 4px; background: #FFFFFF; display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; align-items: center; gap: 2px">
+<a href="Admin.dc.html" aria-label="Back to admin" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B1E24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></a>
+<div style="font-size: 17px; font-weight: 800">Storage and backup</div>
+</div>
+
+</div>
+<div style="flex-grow: 1; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 12px; color: #5E6470; line-height: 1.4">Tap a line to open it.</div>
+<details style="background: #FFFFFF; border-radius: 16px; padding: 0 14px">
+<summary style="list-style: none; cursor: pointer; min-height: 60px; display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Where bills are kept</span><span style="font-size: 12px; color: #5E6470">Online: phone and PC share the same bills</span></span><svg class="chev" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></summary>
+<div style="padding: 2px 0 14px; display: flex; flex-direction: column; gap: 10px">
+<button role="radio" aria-checked="true" style="text-align: left; padding: 12px; border-radius: 12px; border: 2px solid {{accent}}; background: #FFFFFF; display: flex; gap: 12px; align-items: flex-start"><span style="width: 20px; height: 20px; border-radius: 50%; border: 6px solid {{accent}}; box-sizing: border-box; flex-shrink: 0; margin-top: 1px"></span><span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 800; color: #1B1E24">Online (shared)</span><span style="font-size: 12px; color: #5E6470; line-height: 1.4">Phone and PC show the same bills. Bills made with no internet are sent when it returns.</span></span></button>
+<button role="radio" aria-checked="false" style="text-align: left; padding: 12px; border-radius: 12px; border: 1px solid #DDE0E6; background: #FFFFFF; display: flex; gap: 12px; align-items: flex-start"><span style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #8A909C; box-sizing: border-box; flex-shrink: 0; margin-top: 1px"></span><span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 800; color: #1B1E24">On this device only</span><span style="font-size: 12px; color: #5E6470; line-height: 1.4">Nothing is sent anywhere. One device only, so back up often.</span></span></button>
+<div style="font-size: 12px; color: #5E6470; line-height: 1.4">You can switch later. Switching moves every bill across and makes a backup first.</div>
+</div>
+</details>
+<details style="background: #FFFFFF; border-radius: 16px; padding: 0 14px">
+<summary style="list-style: none; cursor: pointer; min-height: 60px; display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Backup</span><span style="font-size: 12px; color: #5E6470">Last backup: 19/11/2026, 10:30 pm</span></span><svg class="chev" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></summary>
+<div style="padding: 2px 0 14px; display: flex; flex-direction: column; gap: 10px">
+<button style="height: 50px; border: 0; border-radius: 12px; background: {{accent}}; color: #FFFFFF; font-size: 15px; font-weight: 800">Back up now</button>
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 14px; font-weight: 600">Back up by itself every day</span><button role="switch" aria-checked="true" aria-label="Back up by itself every day" style="width: 52px; height: 44px; border: 0; background: transparent; padding: 0; display: flex; align-items: center"><span style="width: 52px; height: 30px; border-radius: 15px; background: {{accent}}; display: flex; align-items: center; justify-content: flex-end; padding: 0 3px; box-sizing: border-box"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></span></button></div>
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 14px; font-weight: 600">Lock the file with a password</span><button role="switch" aria-checked="true" aria-label="Lock the file with a password" style="width: 52px; height: 44px; border: 0; background: transparent; padding: 0; display: flex; align-items: center"><span style="width: 52px; height: 30px; border-radius: 15px; background: {{accent}}; display: flex; align-items: center; justify-content: flex-end; padding: 0 3px; box-sizing: border-box"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></span></button></div>
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 14px; font-weight: 600">Save the file to</span><button style="height: 44px; padding: 0 12px; border: 1px solid #DDE0E6; border-radius: 10px; background: #FFFFFF; font-size: 13px; font-weight: 700; color: #1B1E24">Choose folder</button></div>
+</div>
+</details>
+<details style="background: #FFFFFF; border-radius: 16px; padding: 0 14px">
+<summary style="list-style: none; cursor: pointer; min-height: 60px; display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Backup files</span><span style="font-size: 12px; color: #5E6470">3 recent files (sample)</span></span><svg class="chev" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></summary>
+<div style="padding: 2px 0 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px"><span>19/11/2026 · 10:30 pm · 1.2 MB</span><a href="#save" style="font-weight: 700; padding: 6px 0">Save copy</a></div><div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px"><span>18/11/2026 · 10:28 pm · 1.2 MB</span><a href="#save" style="font-weight: 700; padding: 6px 0">Save copy</a></div><div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px"><span>17/11/2026 · 10:41 pm · 1.1 MB</span><a href="#save" style="font-weight: 700; padding: 6px 0">Save copy</a></div>
+</div>
+</details>
+<details style="background: #FFFFFF; border-radius: 16px; padding: 0 14px">
+<summary style="list-style: none; cursor: pointer; min-height: 60px; display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Restore</span><span style="font-size: 12px; color: #5E6470">Put bills back from a backup file</span></span><svg class="chev" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></summary>
+<div style="padding: 2px 0 14px; display: flex; flex-direction: column; gap: 10px">
+<button style="height: 48px; border: 1.5px dashed #8A909C; border-radius: 12px; background: #FFFFFF; font-size: 14px; font-weight: 700; color: #1B1E24">Choose a backup file</button>
+<div style="background: #F3F4F6; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 4px"><div style="font-size: 13px; font-weight: 800">shop-backup-18-11-2026</div><div style="font-size: 12px; color: #3C424D">Made on 18/11/2026 from "Counter PC" (sample)</div><div style="font-size: 12px; color: #3C424D">1,240 bills · 86 items · settings</div><div style="font-size: 12px; font-weight: 700; color: #145C39">File checked: complete and readable</div></div>
+<button role="radio" aria-checked="true" style="text-align: left; padding: 12px; border-radius: 12px; border: 2px solid {{accent}}; background: #FFFFFF; display: flex; gap: 12px; align-items: flex-start"><span style="width: 20px; height: 20px; border-radius: 50%; border: 6px solid {{accent}}; box-sizing: border-box; flex-shrink: 0; margin-top: 1px"></span><span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 800; color: #1B1E24">Add what is missing</span><span style="font-size: 12px; color: #5E6470; line-height: 1.4">Keeps the bills that are here. Bills already here are skipped, so nothing is counted twice.</span></span></button>
+<button role="radio" aria-checked="false" style="text-align: left; padding: 12px; border-radius: 12px; border: 1px solid #DDE0E6; background: #FFFFFF; display: flex; gap: 12px; align-items: flex-start"><span style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #8A909C; box-sizing: border-box; flex-shrink: 0; margin-top: 1px"></span><span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 800; color: #1B1E24">Replace everything</span><span style="font-size: 12px; color: #5E6470; line-height: 1.4">Only when bills are kept on this device. Makes the app exactly as it was on the backup date.</span></span></button>
+<div style="font-size: 12px; color: #5E6470; line-height: 1.4">A safety copy of what is here now is made first, so a restore can be undone.</div>
+<button style="height: 50px; border: 0; border-radius: 12px; background: #1B1E24; color: #FFFFFF; font-size: 15px; font-weight: 800">Restore this backup</button>
+</div>
+</details>
+</div>
+<div style="height: 58px; background: #FFFFFF; border-top: 1px solid #E7E9EE; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: center; text-align: center; font-size: 12px; font-weight: 600"><a href="Main.dc.html" style="color: #5E6470; text-decoration: none; padding: 14px 0">Billing</a><a href="Bills.dc.html" style="color: #5E6470; text-decoration: none; padding: 14px 0">Bills</a><a href="Today.dc.html" style="color: #5E6470; text-decoration: none; padding: 14px 0">Today</a><a href="Admin.dc.html" style="color: {{accent}}; text-decoration: none; font-weight: 800; padding: 14px 0">Admin</a></div>
+</div>
+</x-dc>
+</body>
+</html>

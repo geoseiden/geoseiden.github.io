@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Add or edit an item</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+body{margin:0}
+button{font-family:inherit;cursor:pointer}
+input{font-family:inherit}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 844px; box-sizing: border-box; background: #F4F5F7; color: #1B1E24; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+
+<div style="height: 56px; padding: 0 12px 0 4px; background: #FFFFFF; display: flex; align-items: center; gap: 2px">
+<a href="Items.dc.html" aria-label="Back to menu items" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B1E24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
+</a>
+<div style="font-size: 17px; font-weight: 800">Edit item</div>
+</div>
+
+<div style="flex-grow: 1; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+
+<div style="background: #FFFFFF; border-radius: 16px; padding: 14px; display: flex; gap: 14px; align-items: center">
+<div style="width: 88px; height: 72px; border-radius: 14px; background: #ECEEF2; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5E6470">Photo</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<button style="height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #DDE0E6; background: #FFFFFF; font-size: 13px; font-weight: 700; color: #1B1E24">Take or choose a photo</button>
+<div style="font-size: 12px; color: #5E6470">Optional. The item works without one.</div>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<label for="iname" style="font-size: 12px; font-weight: 600; color: #5E6470">Item name</label>
+<input id="iname" type="text" value="Egg Puffs" style="height: 46px; box-sizing: border-box; border: 1px solid #DDE0E6; border-radius: 12px; padding: 0 12px; font-size: 15px; font-weight: 600; width: 100%">
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<label for="iprice" style="font-size: 12px; font-weight: 600; color: #5E6470">Price (₹)</label>
+<input id="iprice" type="text" inputmode="decimal" value="20" style="height: 46px; box-sizing: border-box; border: 1px solid #DDE0E6; border-radius: 12px; padding: 0 12px; font-size: 16px; font-weight: 700; width: 100%">
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<label for="icode" style="font-size: 12px; font-weight: 600; color: #5E6470">Short code (optional)</label>
+<input id="icode" type="text" inputmode="numeric" value="201" style="height: 46px; box-sizing: border-box; border: 1px solid #DDE0E6; border-radius: 12px; padding: 0 12px; font-size: 16px; font-weight: 700; width: 100%">
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span id="catlabel" style="font-size: 12px; font-weight: 600; color: #5E6470">Category</span>
+<button aria-labelledby="catlabel" style="height: 46px; border: 1px solid #DDE0E6; border-radius: 12px; background: #FFFFFF; padding: 0 12px; font-size: 15px; font-weight: 600; color: #1B1E24; display: flex; justify-content: space-between; align-items: center">Snacks
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+</button>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+<button aria-pressed="false" style="height: 44px; border-radius: 10px; border: 1px solid #DDE0E6; background: #FFFFFF; color: #3C424D; font-size: 13px; font-weight: 600">Veg</button>
+<button aria-pressed="true" style="height: 44px; border-radius: 10px; border: 0; background: #1B1E24; color: #FFFFFF; font-size: 13px; font-weight: 800">Egg or meat</button>
+<button aria-pressed="false" style="height: 44px; border-radius: 10px; border: 1px solid #DDE0E6; background: #FFFFFF; color: #3C424D; font-size: 13px; font-weight: 600">No mark</button>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 16px; padding: 6px 14px">
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid #EEF0F3">
+<span style="font-size: 14px; font-weight: 600">Show on the billing screen</span>
+<button role="switch" aria-checked="true" aria-label="Show on the billing screen" style="width: 52px; height: 44px; border: 0; background: transparent; padding: 0; display: flex; align-items: center"><span style="width: 52px; height: 30px; border-radius: 15px; background: {{accent}}; display: flex; align-items: center; justify-content: flex-end; padding: 0 3px; box-sizing: border-box"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></span></button>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid #EEF0F3">
+<span style="font-size: 14px; font-weight: 600">Favourite (top of the list)</span>
+<button role="switch" aria-checked="true" aria-label="Favourite" style="width: 52px; height: 44px; border: 0; background: transparent; padding: 0; display: flex; align-items: center"><span style="width: 52px; height: 30px; border-radius: 15px; background: {{accent}}; display: flex; align-items: center; justify-content: flex-end; padding: 0 3px; box-sizing: border-box"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></span></button>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0">
+<span style="font-size: 14px; font-weight: 600">Out of stock today</span>
+<button role="switch" aria-checked="false" aria-label="Out of stock today" style="width: 52px; height: 44px; border: 0; background: transparent; padding: 0; display: flex; align-items: center"><span style="width: 52px; height: 30px; border-radius: 15px; background: #8A909C; display: flex; align-items: center; padding: 0 3px; box-sizing: border-box"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></span></button>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 16px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 12px; font-weight: 700; color: #5E6470">Price changes (sample)</div>
+<div style="font-size: 13px; color: #3C424D">₹18 to ₹20 · 02/11/2026 · by Owner</div>
+<div style="font-size: 12px; color: #5E6470">Old bills keep the price they were sold at.</div>
+</div>
+
+<button style="height: 54px; border: 0; border-radius: 14px; background: {{accent}}; color: #FFFFFF; font-size: 16px; font-weight: 800">Save</button>
+<button style="height: 50px; border-radius: 14px; border: 1.5px solid #B4321A; background: #FFFFFF; color: #A12A14; font-size: 15px; font-weight: 800">Delete this item</button>
+<div style="font-size: 12px; color: #5E6470; line-height: 1.4; text-align: center; padding: 0 8px">An item that is on any old bill is removed from the menu but kept inside those bills, so past bills never change.</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#1F7A4D","options":["#1F7A4D","#1D5FBF","#B4470F","#6A3FB5"]},"$preview":{"width":390,"height":1060}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#1F7A4D' };
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Staff</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 844px; box-sizing: border-box; background: #F4F5F7; color: #1B1E24; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 60px; padding: 0 12px 0 4px; background: #FFFFFF; display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; align-items: center; gap: 2px">
+<a href="Admin.dc.html" aria-label="Back to admin" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B1E24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></a>
+<div style="font-size: 17px; font-weight: 800">Staff</div>
+</div>
+<button style="height: 44px; padding: 0 16px; border: 0; border-radius: 12px; background: {{accent}}; color: #FFFFFF; font-size: 14px; font-weight: 800">+ Add person</button>
+</div>
+<div style="flex-grow: 1; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div style="background: #FFFFFF; border-radius: 16px; padding: 0 14px"><div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #EEF0F3; gap: 10px"><div style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 15px; font-weight: 700; ">Owner</span><span style="font-size: 12px; color: #5E6470">Signs in with a password</span></div><span style="padding: 5px 10px; border-radius: 8px; background: #1B1E24; color: #FFFFFF; font-size: 11px; font-weight: 800">ADMIN</span></div><div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #EEF0F3; gap: 10px"><div style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 15px; font-weight: 700; ">Anu</span><span style="font-size: 12px; color: #5E6470">4-digit PIN · last bill today 4:22 pm</span></div><span style="padding: 5px 10px; border-radius: 8px; background: #E6F3EC; color: #145C39; font-size: 11px; font-weight: 800">BILLING</span></div><div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; gap: 10px"><div style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 15px; font-weight: 700; color: #5E6470; ">Manu</span><span style="font-size: 12px; color: #5E6470">Switched off · cannot sign in</span></div><span style="padding: 5px 10px; border-radius: 8px; background: #ECEEF2; color: #3C424D; font-size: 11px; font-weight: 800">OFF</span></div></div>
+<div style="font-size: 12px; color: #5E6470; line-height: 1.4">Tap a line to open it.</div>
+<details style="background: #FFFFFF; border-radius: 16px; padding: 0 14px">
+<summary style="list-style: none; cursor: pointer; min-height: 60px; display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">What a billing user may do</span><span style="font-size: 12px; color: #5E6470">2 of 4 extra actions allowed</span></span><svg class="chev" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></summary>
+<div style="padding: 2px 0 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 12px; color: #5E6470; line-height: 1.4">Making bills, sharing and reprinting are always allowed.</div>
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 14px; font-weight: 600">Give a discount (up to 10%)</span><button role="switch" aria-checked="true" aria-label="Give a discount (up to 10%)" style="width: 52px; height: 44px; border: 0; background: transparent; padding: 0; display: flex; align-items: center"><span style="width: 52px; height: 30px; border-radius: 15px; background: {{accent}}; display: flex; align-items: center; justify-content: flex-end; padding: 0 3px; box-sizing: border-box"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></span></button></div>
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 14px; font-weight: 600">Mark an item out of stock</span><button role="switch" aria-checked="true" aria-label="Mark an item out of stock" style="width: 52px; height: 44px; border: 0; background: transparent; padding: 0; display: flex; align-items: center"><span style="width: 52px; height: 30px; border-radius: 15px; background: {{accent}}; display: flex; align-items: center; justify-content: flex-end; padding: 0 3px; box-sizing: border-box"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></span></button></div>
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 14px; font-weight: 600">See bills from earlier days</span><button role="switch" aria-checked="false" aria-label="See bills from earlier days" style="width: 52px; height: 44px; border: 0; background: transparent; padding: 0; display: flex; align-items: center"><span style="width: 52px; height: 30px; border-radius: 15px; background: #8A909C; display: flex; align-items: center; padding: 0 3px; box-sizing: border-box"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></span></button></div>
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 14px; font-weight: 600">See today's total sales</span><button role="switch" aria-checked="false" aria-label="See today's total sales" style="width: 52px; height: 44px; border: 0; background: transparent; padding: 0; display: flex; align-items: center"><span style="width: 52px; height: 30px; border-radius: 15px; background: #8A909C; display: flex; align-items: center; padding: 0 3px; box-sizing: border-box"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></span></button></div>
+</div>
+</details>
+<details style="background: #FFFFFF; border-radius: 16px; padding: 0 14px">
+<summary style="list-style: none; cursor: pointer; min-height: 60px; display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Only the admin, always</span><span style="font-size: 12px; color: #5E6470">6 actions</span></span><svg class="chev" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></summary>
+<div style="padding: 2px 0 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span style="padding: 7px 10px; border-radius: 8px; background: #F3F4F6; font-size: 12px; font-weight: 700">Cancel a bill</span><span style="padding: 7px 10px; border-radius: 8px; background: #F3F4F6; font-size: 12px; font-weight: 700">Items and prices</span><span style="padding: 7px 10px; border-radius: 8px; background: #F3F4F6; font-size: 12px; font-weight: 700">Export bills</span><span style="padding: 7px 10px; border-radius: 8px; background: #F3F4F6; font-size: 12px; font-weight: 700">Printer and bill design</span><span style="padding: 7px 10px; border-radius: 8px; background: #F3F4F6; font-size: 12px; font-weight: 700">Backup and restore</span><span style="padding: 7px 10px; border-radius: 8px; background: #F3F4F6; font-size: 12px; font-weight: 700">Staff</span></div>
+</div>
+</details>
+<details style="background: #FFFFFF; border-radius: 16px; padding: 0 14px">
+<summary style="list-style: none; cursor: pointer; min-height: 60px; display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Devices signed in</span><span style="font-size: 12px; color: #5E6470">2 devices (sample)</span></span><svg class="chev" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></summary>
+<div style="padding: 2px 0 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: center"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 700">Counter PC</span><span style="font-size: 12px; color: #5E6470">Anu · in use now</span></div><button style="height: 44px; padding: 0 12px; border: 0; background: transparent; color: #A12A14; font-size: 13px; font-weight: 800">Sign out</button></div>
+<div style="display: flex; justify-content: space-between; align-items: center"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 700">Owner phone</span><span style="font-size: 12px; color: #5E6470">Owner · this device</span></div><button style="height: 44px; padding: 0 12px; border: 0; background: transparent; color: #A12A14; font-size: 13px; font-weight: 800">Sign out</button></div>
+</div>
+</details>
+</div>
+
+</div>
+</x-dc>
+</body>
+</html>

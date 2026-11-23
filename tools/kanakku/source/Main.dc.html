@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Billing screen</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+body{margin:0}
+button{font-family:inherit;cursor:pointer}
+input{font-family:inherit}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FFFFFF; color: #1B1E24; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+
+<div style="padding: 16px 16px 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 19px; font-weight: 800; letter-spacing: -0.2px">[SHOP NAME]</div>
+<div style="font-size: 12px; color: #5E6470">Billing as Anu</div>
+</div>
+<div style="display: flex; align-items: center; gap: 6px; padding: 7px 10px; border: 1px solid #E3E6EB; border-radius: 999px; font-size: 12px; font-weight: 600; color: #3C424D">
+<span style="width: 8px; height: 8px; border-radius: 50%; background: {{accent}}"></span>
+Printer ready
+</div>
+</div>
+
+<div style="padding: 0 16px 10px">
+<label class="vh" for="q">Search items</label>
+<div style="display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 14px; background: #F3F4F6; border-radius: 14px">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+<input id="q" type="search" placeholder="Search for an item or code" style="flex-grow: 1; border: 0; background: transparent; font-size: 14px; color: #1B1E24; outline: none">
+</div>
+</div>
+
+<div style="padding: 0 16px 12px; display: flex; gap: 8px">
+<button style="height: 44px; padding: 0 14px; border-radius: 999px; border: 1.5px solid {{accent}}; background: #FFFFFF; color: {{accent}}; font-size: 13px; font-weight: 700">Favourites</button>
+<button style="height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid #DDE0E6; background: #FFFFFF; color: #3C424D; font-size: 13px; font-weight: 600">Veg</button>
+<button style="height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid #DDE0E6; background: #FFFFFF; color: #3C424D; font-size: 13px; font-weight: 600">Bestseller</button>
+<button style="height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid #DDE0E6; background: #FFFFFF; color: #3C424D; font-size: 13px; font-weight: 600">Compact</button>
+</div>
+
+<div style="flex-grow: 1; overflow: hidden; position: relative">
+
+<div style="padding: 10px 16px 8px; background: #F7F8FA; font-size: 15px; font-weight: 800; display: flex; justify-content: space-between">
+<span>Hot Drinks</span><span style="color: #5E6470; font-weight: 600; font-size: 13px">4 items</span>
+</div>
+
+<div style="padding: 14px 16px; display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid #EEF0F3">
+<div style="display: flex; flex-direction: column; gap: 5px">
+<div style="display: flex; align-items: center; gap: 8px">
+<svg role="img" aria-label="Vegetarian" width="14" height="14" viewBox="0 0 14 14"><rect x="1" y="1" width="12" height="12" rx="2" fill="none" stroke="#1F7A4D" stroke-width="1.6"></rect><circle cx="7" cy="7" r="3" fill="#1F7A4D"></circle></svg>
+<span style="font-size: 11px; font-weight: 700; color: #A34A00">Bestseller</span>
+</div>
+<div style="font-size: 16px; font-weight: 700">Tea</div>
+<div style="font-size: 14px; font-weight: 600">₹12</div>
+</div>
+<div style="position: relative; width: 104px; height: 92px">
+<div style="width: 104px; height: 76px; border-radius: 14px; background: #ECEEF2; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5E6470">Photo</div>
+<div style="position: absolute; left: 4px; bottom: 0; width: 96px; height: 44px; border-radius: 10px; background: {{accent}}; color: #FFFFFF; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.14)">
+<button aria-label="One less Tea" style="width: 32px; height: 44px; border: 0; background: transparent; color: #FFFFFF; font-size: 20px; font-weight: 700">−</button>
+<span style="font-size: 15px; font-weight: 800">2</span>
+<button aria-label="One more Tea" style="width: 32px; height: 44px; border: 0; background: transparent; color: #FFFFFF; font-size: 20px; font-weight: 700">+</button>
+</div>
+</div>
+</div>
+
+<div style="padding: 14px 16px; display: flex; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 5px">
+<svg role="img" aria-label="Vegetarian" width="14" height="14" viewBox="0 0 14 14"><rect x="1" y="1" width="12" height="12" rx="2" fill="none" stroke="#1F7A4D" stroke-width="1.6"></rect><circle cx="7" cy="7" r="3" fill="#1F7A4D"></circle></svg>
+<div style="font-size: 16px; font-weight: 700">Coffee</div>
+<div style="font-size: 14px; font-weight: 600">₹15</div>
+</div>
+<div style="position: relative; width: 104px; height: 92px">
+<div style="width: 104px; height: 76px; border-radius: 14px; background: #ECEEF2; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5E6470">Photo</div>
+<button style="position: absolute; left: 4px; bottom: 0; width: 96px; height: 44px; border-radius: 10px; border: 1px solid #DDE0E6; background: #FFFFFF; color: {{accent}}; font-size: 15px; font-weight: 800; box-shadow: 0 2px 6px rgba(0,0,0,0.10)">ADD</button>
+</div>
+</div>
+
+<div style="padding: 10px 16px 8px; background: #F7F8FA; font-size: 15px; font-weight: 800; display: flex; justify-content: space-between">
+<span>Snacks</span><span style="color: #5E6470; font-weight: 600; font-size: 13px">12 items</span>
+</div>
+
+<div style="padding: 14px 16px; display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid #EEF0F3">
+<div style="display: flex; flex-direction: column; gap: 5px">
+<svg role="img" aria-label="Contains egg or meat" width="14" height="14" viewBox="0 0 14 14"><rect x="1" y="1" width="12" height="12" rx="2" fill="none" stroke="#8A2B0E" stroke-width="1.6"></rect><path d="M7 3.6l3.4 6H3.6z" fill="#8A2B0E"></path></svg>
+<div style="font-size: 16px; font-weight: 700">Egg Puffs</div>
+<div style="font-size: 14px; font-weight: 600">₹20</div>
+</div>
+<div style="position: relative; width: 104px; height: 92px">
+<div style="width: 104px; height: 76px; border-radius: 14px; background: #ECEEF2; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #5E6470">Photo</div>
+<div style="position: absolute; left: 4px; bottom: 0; width: 96px; height: 44px; border-radius: 10px; background: {{accent}}; color: #FFFFFF; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,0.14)">
+<button aria-label="One less Egg Puffs" style="width: 32px; height: 44px; border: 0; background: transparent; color: #FFFFFF; font-size: 20px; font-weight: 700">−</button>
+<span style="font-size: 15px; font-weight: 800">3</span>
+<button aria-label="One more Egg Puffs" style="width: 32px; height: 44px; border: 0; background: transparent; color: #FFFFFF; font-size: 20px; font-weight: 700">+</button>
+</div>
+</div>
+</div>
+
+<div style="padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 5px">
+<svg role="img" aria-label="Contains egg or meat" width="14" height="14" viewBox="0 0 14 14"><rect x="1" y="1" width="12" height="12" rx="2" fill="none" stroke="#8A2B0E" stroke-width="1.6"></rect><path d="M7 3.6l3.4 6H3.6z" fill="#8A2B0E"></path></svg>
+<div style="font-size: 16px; font-weight: 700">Chicken Cutlet</div>
+<div style="font-size: 14px; font-weight: 600">₹45</div>
+<div style="font-size: 12px; color: #5E6470">No photo added. The row still works.</div>
+</div>
+<div style="width: 96px; height: 44px; border-radius: 10px; background: {{accent}}; color: #FFFFFF; display: flex; align-items: center; justify-content: space-between">
+<button aria-label="One less Chicken Cutlet" style="width: 32px; height: 44px; border: 0; background: transparent; color: #FFFFFF; font-size: 20px; font-weight: 700">−</button>
+<span style="font-size: 15px; font-weight: 800">1</span>
+<button aria-label="One more Chicken Cutlet" style="width: 32px; height: 44px; border: 0; background: transparent; color: #FFFFFF; font-size: 20px; font-weight: 700">+</button>
+</div>
+</div>
+
+<button style="position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: #1B1E24; color: #FFFFFF; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 8px; box-shadow: 0 6px 16px rgba(0,0,0,0.25)">
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"></path></svg>
+Menu
+</button>
+</div>
+
+<a href="Bill.dc.html" style="margin: 0 12px 10px; height: 56px; border-radius: 14px; background: {{accent}}; color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; box-sizing: border-box">
+<span style="font-size: 15px; font-weight: 700">6 items · ₹129</span>
+<span style="font-size: 15px; font-weight: 800; display: flex; align-items: center; gap: 6px">View bill
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg>
+</span>
+</a>
+
+<div style="height: 58px; border-top: 1px solid #E7E9EE; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; text-align: center; font-size: 12px; font-weight: 600">
+<a href="Main.dc.html" style="color: {{accent}}; text-decoration: none; font-weight: 800; padding: 14px 0">Billing</a>
+<a href="Bills.dc.html" style="color: #5E6470; text-decoration: none; padding: 14px 0">Today's bills</a>
+<a href="Cashier.dc.html" style="color: #5E6470; text-decoration: none; padding: 14px 0">Me</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#1F7A4D","options":["#1F7A4D","#1D5FBF","#B4470F","#6A3FB5"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#1F7A4D' };
+}
+}
+</script>
+</body>
+</html>

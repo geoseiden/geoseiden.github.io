@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Printer</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 844px; box-sizing: border-box; background: #F4F5F7; color: #1B1E24; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="height: 60px; padding: 0 12px 0 4px; background: #FFFFFF; display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; align-items: center; gap: 2px">
+<a href="Admin.dc.html" aria-label="Back to admin" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B1E24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></a>
+<div style="font-size: 17px; font-weight: 800">Printer</div>
+</div>
+<div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #3C424D"><span style="width: 8px; height: 8px; border-radius: 50%; background: {{accent}}"></span>Connected: [PRINTER MODEL]</div>
+</div>
+<div style="flex-grow: 1; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 12px; color: #5E6470; line-height: 1.4">Tap a line to open it.</div>
+<details style="background: #FFFFFF; border-radius: 16px; padding: 0 14px">
+<summary style="list-style: none; cursor: pointer; min-height: 60px; display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Paper</span><span style="font-size: 12px; color: #5E6470">58 mm · 32 letters per line</span></span><svg class="chev" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></summary>
+<div style="padding: 2px 0 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+<button aria-pressed="true" style="height: 44px; border-radius: 10px; border: 0; background: {{accent}}; color: #FFFFFF; font-size: 13px; font-weight: 800">58 mm</button>
+<button aria-pressed="false" style="height: 44px; border-radius: 10px; border: 1px solid #DDE0E6; background: #FFFFFF; color: #3C424D; font-size: 13px; font-weight: 600">80 mm</button>
+<button aria-pressed="false" style="height: 44px; border-radius: 10px; border: 1px solid #DDE0E6; background: #FFFFFF; color: #3C424D; font-size: 13px; font-weight: 600">Custom</button>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px"><div style="display: flex; flex-direction: column; gap: 4px"><label for="dots" style="font-size: 12px; font-weight: 600; color: #5E6470">Print width (dots)</label><input id="dots" type="text" inputmode="numeric" value="384" style="height: 44px; box-sizing: border-box; border: 1px solid #DDE0E6; border-radius: 12px; padding: 0 12px; font-size: 15px; font-weight: 700; width: 100%"></div><div style="display: flex; flex-direction: column; gap: 4px"><label for="cols" style="font-size: 12px; font-weight: 600; color: #5E6470">Letters per line</label><input id="cols" type="text" inputmode="numeric" value="32" style="height: 44px; box-sizing: border-box; border: 1px solid #DDE0E6; border-radius: 12px; padding: 0 12px; font-size: 15px; font-weight: 700; width: 100%"></div><div style="display: flex; flex-direction: column; gap: 4px"><label for="shift" style="font-size: 12px; font-weight: 600; color: #5E6470">Move print right (dots)</label><input id="shift" type="text" inputmode="numeric" value="0" style="height: 44px; box-sizing: border-box; border: 1px solid #DDE0E6; border-radius: 12px; padding: 0 12px; font-size: 15px; font-weight: 700; width: 100%"></div><div style="display: flex; flex-direction: column; gap: 4px"><label for="feed" style="font-size: 12px; font-weight: 600; color: #5E6470">Blank lines at the end</label><input id="feed" type="text" inputmode="numeric" value="3" style="height: 44px; box-sizing: border-box; border: 1px solid #DDE0E6; border-radius: 12px; padding: 0 12px; font-size: 15px; font-weight: 700; width: 100%"></div></div>
+</div>
+</details>
+<details style="background: #FFFFFF; border-radius: 16px; padding: 0 14px">
+<summary style="list-style: none; cursor: pointer; min-height: 60px; display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">How the bill is printed</span><span style="font-size: 12px; color: #5E6470">Text · Safe speed</span></span><svg class="chev" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></summary>
+<div style="padding: 2px 0 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+<button aria-pressed="true" style="height: 44px; border-radius: 10px; border: 0; background: {{accent}}; color: #FFFFFF; font-size: 13px; font-weight: 800">Text (fast)</button>
+<button aria-pressed="false" style="height: 44px; border-radius: 10px; border: 1px solid #DDE0E6; background: #FFFFFF; color: #3C424D; font-size: 13px; font-weight: 600">Picture (logo and ₹)</button>
+</div>
+<div style="font-size: 12px; color: #5E6470; line-height: 1.4">Sending speed. If the print shows wrong letters or stops halfway, choose a slower one.</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+<button aria-pressed="true" style="height: 44px; border-radius: 10px; border: 0; background: {{accent}}; color: #FFFFFF; font-size: 13px; font-weight: 800">Safe</button>
+<button aria-pressed="false" style="height: 44px; border-radius: 10px; border: 1px solid #DDE0E6; background: #FFFFFF; color: #3C424D; font-size: 13px; font-weight: 600">Normal</button>
+<button aria-pressed="false" style="height: 44px; border-radius: 10px; border: 1px solid #DDE0E6; background: #FFFFFF; color: #3C424D; font-size: 13px; font-weight: 600">Fast</button>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 14px; font-weight: 600">Print Rs. in place of the rupee sign</span><button role="switch" aria-checked="true" aria-label="Print Rs. in place of the rupee sign" style="width: 52px; height: 44px; border: 0; background: transparent; padding: 0; display: flex; align-items: center"><span style="width: 52px; height: 30px; border-radius: 15px; background: {{accent}}; display: flex; align-items: center; justify-content: flex-end; padding: 0 3px; box-sizing: border-box"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></span></button></div>
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 14px; font-weight: 600">Cut the paper after each bill</span><button role="switch" aria-checked="false" aria-label="Cut the paper after each bill" style="width: 52px; height: 44px; border: 0; background: transparent; padding: 0; display: flex; align-items: center"><span style="width: 52px; height: 30px; border-radius: 15px; background: #8A909C; display: flex; align-items: center; padding: 0 3px; box-sizing: border-box"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF"></span></span></button></div>
+</div>
+</details>
+<details style="background: #FFFFFF; border-radius: 16px; padding: 0 14px">
+<summary style="list-style: none; cursor: pointer; min-height: 60px; display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Test prints</span><span style="font-size: 12px; color: #5E6470">Ruler, border, long bill, sample bill</span></span><svg class="chev" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></summary>
+<div style="padding: 2px 0 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px"><button style="height: 56px; border-radius: 12px; border: 1px solid #DDE0E6; background: #FFFFFF; text-align: left; padding: 0 12px; display: flex; flex-direction: column; justify-content: center; gap: 2px"><span style="font-size: 13px; font-weight: 800; color: #1B1E24">Ruler</span><span style="font-size: 11px; color: #5E6470">Find where the line ends</span></button><button style="height: 56px; border-radius: 12px; border: 1px solid #DDE0E6; background: #FFFFFF; text-align: left; padding: 0 12px; display: flex; flex-direction: column; justify-content: center; gap: 2px"><span style="font-size: 13px; font-weight: 800; color: #1B1E24">Border</span><span style="font-size: 11px; color: #5E6470">Check left and right</span></button><button style="height: 56px; border-radius: 12px; border: 1px solid #DDE0E6; background: #FFFFFF; text-align: left; padding: 0 12px; display: flex; flex-direction: column; justify-content: center; gap: 2px"><span style="font-size: 13px; font-weight: 800; color: #1B1E24">Long bill</span><span style="font-size: 11px; color: #5E6470">40 items, no breaks</span></button><button style="height: 56px; border-radius: 12px; border: 1px solid #DDE0E6; background: #FFFFFF; text-align: left; padding: 0 12px; display: flex; flex-direction: column; justify-content: center; gap: 2px"><span style="font-size: 13px; font-weight: 800; color: #1B1E24">Sample bill</span><span style="font-size: 11px; color: #5E6470">A real-looking bill</span></button></div>
+</div>
+</details>
+<details style="background: #FFFFFF; border-radius: 16px; padding: 0 14px">
+<summary style="list-style: none; cursor: pointer; min-height: 60px; display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 700">Preview</span><span style="font-size: 12px; color: #5E6470">The bill at true paper width</span></span><svg class="chev" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E6470" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></summary>
+<div style="padding: 2px 0 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="background: #E9EBEF; border-radius: 12px; padding: 14px 0; display: flex; justify-content: center"><pre style="margin: 0; padding: 12px 10px; background: #FFFFFF; box-shadow: 0 1px 4px rgba(0,0,0,0.18); font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11.5px; line-height: 1.45; color: #1B1E24; white-space: pre">12345678901234567890123456789012
+          [SHOP NAME]
+      [ADDRESS LINE, PLACE]
+        Ph: [SHOP PHONE]
+--------------------------------
+Bill A2-1042    20/11/2026 16:15
+--------------------------------
+Item           Qty  Rate  Amount
+Tea              2    12      24
+Egg Puffs        3    20      60
+Chicken Cutlet   1    45      45
+--------------------------------
+Subtotal                     129
+Discount                      -4
+TOTAL                    Rs. 125
+--------------------------------
+Paid by Cash
+      Thank you, come again</pre></div>
+</div>
+</details>
+<button style="height: 54px; border: 0; border-radius: 14px; background: {{accent}}; color: #FFFFFF; font-size: 15px; font-weight: 800">Save as "Counter printer"</button>
+</div>
+
+</div>
+</x-dc>
+</body>
+</html>
